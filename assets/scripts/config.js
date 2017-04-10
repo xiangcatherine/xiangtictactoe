@@ -3,7 +3,7 @@
 const config = {
   apiOrigins: {
     production: 'https://xiangcatherine.github.io/xiangtictactoe/',
-    development: 'http://localhost:7165/'
+    development: 'http://localhost:4741/'
   }
 }
 
