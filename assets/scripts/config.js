@@ -2,7 +2,7 @@
 
 const config = {
   apiOrigins: {
-    production: 'https://xiangcatherine.github.io/xiangtictactoe/',
+    production: 'https://ga-wdi-boston.herokuapp.com',
     development: 'http://localhost:4741/'
   }
 }
