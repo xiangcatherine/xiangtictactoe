@@ -6,13 +6,40 @@
 
       <!-- Do not add `link` tags unless you know what you are doing -->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+      <link rel="stylesheet" href="assets/styles/styles.css">
+      <link href="https://fonts.googleapis.com/css?family=Sue+Ellen+Francisco" rel="stylesheet">
 
       <!-- Do not add `script` tags unless you know what you are doing -->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <h1>Tic Tac Toe</h1>
+
+      <header>
+        <title>Tic Tac Toe</title>
+      </header>
+
+      <div id="grid">
+
+        <div class="slots">
+          <span class = "slot" data-item></span>
+          <span class = "slot" data-item></span>
+          <span class = "slot" data-item></span>
+          <span class = "slot" data-item>
+            <p>Tic</p>
+          </span>
+          <span class = "slot" data-item>
+            <p>Tac</p>
+          </span>
+          <span class = "slot" data-item>
+            <p>Toe</p>
+          </span>
+          <span class = "slot" data-item></span>
+          <span class = "slot" data-item></span>
+          <span class = "slot" data-item></span>
+      </div>
+
+      </div>
 
       <form id="sign-up">
         <fieldset>
