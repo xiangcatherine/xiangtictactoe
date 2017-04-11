@@ -1,42 +1,83 @@
-console.log('mainjs here')
+'use strict'
 
-// all the possible winning combinations
-const winCombos = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [6, 4, 2],
-  [0, 4, 8]
-]
+// (1) Grid layout
+//
+// The game grid is represented in the array grid.cells as follows:
+//
+// [0] [1] [2]
+// [3] [4] [5]
+// [6] [7] [8]
 
-const board = []
-const slots = document.getElementsByClassName('slot')
-const play = function () {
-}
+$(document).ready(function () {
+  let turnCount = 0
 
-const boardWidth = 3
-console.log('grid width is ' + boardWidth)
+  $('#grid').find('.cell').on('click', function () {
+    if (turnCount % 2 === 0) {
+      $(this).text('X')
+      checkVictory('X')
+    } else {
+      $(this).text('O')
+      checkVictory('O')
+    }
+    turnCount++
+  })
 
-// create the board
-const createBoard = function () {
-  for (let i = 0; i < boardWidth * boardWidth; i++) {
-    board.push('')
+  function checkVictory (player) {
+    if ($('.cells').find('#cell-0').text() !== '') {
+      if ($('.cells').find('#cell-0').text() === $('board').find('#cell-1').text()) {
+        if ($('.cells').find('#cell-0').text() === $('#cell-2').text()) {
+          console.log('Game over! ' + player + ' is the winner!')
+          $('#newGame').removeClass('invisible')
+        }
+      }
+      if ($('.cells').find('#cell-0').text() === $('.cells').find('#cell-3').text()) {
+        if ($('.cells').find('#cell-0').text() === $('#cell-6').text()) {
+          console.log('Game over! ' + player + ' is the winner!')
+          $('#newGame').removeClass('invisible')
+        }
+      }
+      if ($('.cells').find('#cell-0').text() === $('.cells').find('#cell-4').text()) {
+        if ($('.cells').find('#cell-0').text() === $('#cell-8').text()) {
+          console.log('Game over! ' + player + ' is the winner!')
+          $('#newGame').removeClass('invisible')
+        }
+      }
+    }
+    if ($('.cells').find('#cell-1').text() !== '') {
+      if ($('.cells').find('#cell-1').text() === $('.cells').find('#cell-6').text()) {
+        if ($('.cells').find('#cell-3').text() === $('#cell-7').text()) {
+          console.log('Game over! ' + player + ' is the winner!')
+          $('#newGame').removeClass('invisible')
+        }
+      }
+    }
+    if ($('.cells').find('#cell-2').text() !== '') {
+      if ($('.cells').find('#cell-2').text() === $('.cells').find('#cell-5').text()) {
+        if ($('.cells').find('#cell-2').text() === $('#cell-8').text()) {
+          console.log('Game over! ' + player + ' is the winner!')
+          $('#newGame').removeClass('invisible')
+        }
+      }
+      if ($('.cells').find('#cell-2').text() === $('.cells').find('#cell-4').text()) {
+        if ($('.cells').find('#cell-2').text() === $('#cell-6').text()) {
+          console.log('Game over! ' + player + ' is the winner!')
+          $('#newGame').removeClass('invisible')
+        }
+      }
+    }
+    if ($('.cells').find('#cell-3').text() !== '') {
+      if ($('.cells').find('#cell-3').text() === $('.cells').find('#cell-4').text()) {
+        if ($('.cells').find('#cell-3').text() === $('#cell-5').text()) {
+          console.log('Game over! ' + player + ' is the winner!')
+          $('#newGame').removeClass('invisible')
+        }
+      }
+    }
   }
-}
-
-// show the board
-const render = function () {
-  for (let i = 0; i < slots.length; i++) {
-    slots[i].innerHTML = board[i]
-  }
-}
+  $('#newGame').on('click', function () {
+    $('.square').text('')
+  })
+})
 
 module.exports = {
-  winCombos,
-  createBoard,
-  render,
-  play
 }

@@ -34,14 +34,14 @@ parent: flexbox itself
 items inside: flex items
 */
 
-.slots {
+.cells {
   position: absolute;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.slot {
+.cell {
   width: 150px;
   height: 150px;
   margin-right: 5px;
@@ -52,13 +52,13 @@ items inside: flex items
   font-size: 100px;
 }
 
-.slot p {
+.cell p {
   font-size: 60px;
   padding-top: 45px;
   font-family: 'Sue Ellen Francisco', cursive;
 }
 
-.slot:nth-child(3n) {
+.cell:nth-child(3n) {
   margin-right: 0;
 }
 
