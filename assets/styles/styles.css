@@ -61,3 +61,12 @@ items inside: flex items
 .slot:nth-child(3n) {
   margin-right: 0;
 }
+
+#playButton {
+  display: inline-block;
+  border: none;
+  background-color: #fff;
+  font-size: 40px;
+  border-radius: 6px;
+  font-family: 'Sue Ellen Francisco', cursive;
+}
