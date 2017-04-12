@@ -41,23 +41,29 @@ $(document).ready(function () {
   const title = $('.TicTacToe')
   const restart = $('#restartButton')
   const cells = $('.cell')
+  const board = []
 
   // $('#playButton').on('click', function () {
   //   playButton.fadeOut('slow')
   //   title.fadeOut('slow')
   // })
+  // restart.on('click', function () {
+  //   $('.cell').text('')
 
-  $('#grid').find('.cell').on('click', function () {
+  playButton.on('click', function () {
+    $('.cell').text('')
     playButton.fadeOut('slow')
     title.fadeOut('slow')
-    if (turnCount % 2 === 0) {
-      $(this).text('X')
-      checkVictory('X')
-    } else {
-      $(this).text('O')
-      checkVictory('O')
-    }
-    turnCount++
+    $('#grid').find('.cell').on('click', function () {
+      if (turnCount % 2 === 0) {
+        $(this).text('X')
+        checkVictory('X')
+      } else {
+        $(this).text('O')
+        checkVictory('O')
+      }
+      turnCount++
+    })
   })
 
   function checkVictory (player) {
@@ -118,8 +124,24 @@ $(document).ready(function () {
           console.log('Game over! ' + player + ' is the winner!')
         }
       }
-    } else {
-      console.log('It is a tie!')
+    } if ($('.cells').find('#cell-0').text() !== '') {
+        if ($('.cells').find('#cell-1').text() !== '') {
+          if ($('.cells').find('#cell-2').text() !== '') {
+            if ($('.cells').find('#cell-3').text() !== '') {
+              if ($('.cells').find('#cell-4').text() !== '') {
+                if ($('.cells').find('#cell-5').text() !== '') {
+                  if ($('.cells').find('#cell-6').text() !== '') {
+                    if ($('.cells').find('#cell-7').text() !== '') {
+                      if ($('.cells').find('#cell-8').text() !== '') {
+                        console.log('It is a tie!')
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
     }
     restart.on('click', function () {
       $('.cell').text('')
