@@ -32,7 +32,7 @@
 'use strict'
 
 $(document).ready(function () {
-  const gameBoard = ['', '', '', '', '', '', '', '', '']
+  let gameBoard = ['', '', '', '', '', '', '', '', '']
   let gameState = 'active'
   let turnCount = 0
   let currPlayer = 'X'
@@ -43,8 +43,12 @@ $(document).ready(function () {
     }
 
     incrementTurnCount()
-    updateArray(this.id)
+    insertIntoGameBoard(this.id)
     checkGameOutcome()
+  })
+
+  $('#restartButton').on('click', function () {
+    restartGame()
   })
 
   /*
@@ -80,12 +84,23 @@ $(document).ready(function () {
   /*
    *  Places X or O into html and updates array[index] with new value
    */
-  const updateArray = function (cellId) {
-    // put X/O into game board
-    $('#' + cellId).text(currPlayer)
-
+  const insertIntoGameBoard = function (cellId) {
     // push what's in the clicked cell to the array
     gameBoard[parseInt(cellId)] = currPlayer
+
+    updateGameBoard(gameBoard)
+  }
+
+  /*
+   *  Take the array and update gameBoard with the values
+   */
+  const updateGameBoard = function (valueArray) {
+    gameBoard = valueArray
+
+    // for each element in the gameBoard, update the html board
+    for (let i = 0; i < gameBoard.length; i++) {
+      $('#' + i).text(gameBoard[i])
+    }
   }
 
   /*
@@ -118,19 +133,24 @@ $(document).ready(function () {
 
     // show some indicator of winner/loser
     if (outcome === 'win') {
-      $('.outcomeText').text(currPlayer + ' wins!')
+      updateOutcomeText(currPlayer + ' wins!')
     } else {
-      $('.outcomeText').text("It's a draw!")
+      updateOutcomeText("It's a draw!")
     }
   }
 
+  /*
+   *  Resets all game variables
+   */
   const restartGame = function () {
-    // clear the array
-    // updateBoard
+    gameState = 'active'
+    turnCount = 0
+    updateGameBoard(['', '', '', '', '', '', '', '', ''])
+    updateOutcomeText('')
   }
 
-  const updateBoard = function () {
-    // take the array and update html with the values
+  const updateOutcomeText = function (message) {
+    $('.outcomeText').text(message)
   }
 })
 
