@@ -4,13 +4,13 @@ const gamesApi = require('./api.js')
 const gamesUi = require('./ui.js')
 const getFormFields = require(`../../../lib/get-form-fields`)
 
-const onGetAllGames = function (event) {
+const onCreateGame = function () {
   event.preventDefault()
-  gamesApi.getAllGames()
+  gamesApi.createGame()
     .then(gamesUi.onSuccess)
     .catch(gamesUi.onError)
 }
 
 module.exports = {
-  onGetAllGames
+  onCreateGame
 }

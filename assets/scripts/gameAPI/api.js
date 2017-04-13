@@ -1,14 +1,19 @@
 'use strict'
 
-const app = require('../app.js')
+const config = require('../config.js')
+const store = require('../store.js')
 
-const getAllGames = function () {
+const createGame = () => {
   return $.ajax({
-    url: app.host + '/games',
-    method: 'GET'
+    url: config.apiOrigin + 'games',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: {}
   })
 }
 
 module.exports = {
-  getAllGames
+  createGame
 }

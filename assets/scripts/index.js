@@ -20,5 +20,13 @@ const gameEvents = require('./gameAPI/events.js')
 // On document ready
 $(() => {
   authEvents.addHandlers()
-  $('#games-search').on('submit', gameEvents.onGetAllGames)
+  $('#restartButton').on('click', gameEvents.onCreateGame)
 })
+
+// $(() => {
+//   $('#books-search').on('submit', bookEvents.onGetBooks)
+//   $('#book-search').on('submit', bookEvents.onGetBook)
+//   $('#book-delete').on('submit', bookEvents.onDeleteBook)
+//   $('#book-update').on('submit', bookEvents.onUpdateBook)
+//   $('#book-update').on('submit', bookEvents.onCreateBook)
+// })
