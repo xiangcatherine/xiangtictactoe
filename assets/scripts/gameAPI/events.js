@@ -11,6 +11,20 @@ const onCreateGame = function () {
     .catch(gamesUi.onError)
 }
 
+const onUpdateGame = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+
+  if (data.game.id.length !== 0) {
+    gamesApi.update(data)
+      .then(gamesUi.onSuccess)
+      .catch(gamesUi.onError)
+  } else {
+    console.log('Please provide a book id!')
+  }
+}
+
 module.exports = {
-  onCreateGame
+  onCreateGame,
+  onUpdateGame
 }
