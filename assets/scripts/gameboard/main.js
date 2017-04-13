@@ -34,45 +34,62 @@
 $(document).ready(function () {
   const gameBoard = ['', '', '', '', '', '', '', '', '']
   let turnCount = 0
+  let currPlayer = 'X'
 
   $('.cell').on('click', function () {
     incrementTurnCount()
     updateArray(this.id)
-    checkForWin()
+    checkGameOutcome()
   })
 
+  /*
+   *  Keeps track of whose turn it is
+   */
   const incrementTurnCount = function () {
     turnCount++
+
+    if (turnCount % 2 === 0) {
+      currPlayer = 'X'
+    } else {
+      currPlayer = 'O'
+    }
   }
 
   /*
-   * Places X or O into html and updates array[index] with new value
+   *  Places X or O into html and updates array[index] with new value
    */
   const updateArray = function (cellId) {
-    let cellValue = ''
-    if (turnCount % 2 === 0) {
-      cellValue = 'X'
-    } else {
-      cellValue = 'O'
-    }
-
     // put X/O into game board
-    $('#' + cellId).text(cellValue)
+    $('#' + cellId).text(currPlayer)
 
     // push what's in the clicked cell to the array
-    gameBoard[parseInt(cellId)] = cellValue
+    gameBoard[parseInt(cellId)] = currPlayer
   }
 
-  const checkForWin = function () {
-    console.log('check')
-    // - check for win:
-    //     - horizontal: (0, 1, 2), (3, 4, 5), (6, 7, 8)
-    //     - vertical: (0, 3, 6), (1, 4, 7), (2, 5, 8)
-    //     - diagonal: (0, 4, 8), (2, 4, 6)
-    // - check for draw
+  /*
+   *  Checks for win or draw
+   */
+  const checkGameOutcome = function () {
+    if (turnCount < 5) {
+      return
+    }
+
+    if ((gameBoard[0] === currPlayer && gameBoard[1] === currPlayer && gameBoard[2] === currPlayer) ||
+        (gameBoard[3] === currPlayer && gameBoard[4] === currPlayer && gameBoard[5] === currPlayer) ||
+        (gameBoard[6] === currPlayer && gameBoard[7] === currPlayer && gameBoard[8] === currPlayer) ||
+        (gameBoard[0] === currPlayer && gameBoard[3] === currPlayer && gameBoard[6] === currPlayer) ||
+        (gameBoard[1] === currPlayer && gameBoard[4] === currPlayer && gameBoard[7] === currPlayer) ||
+        (gameBoard[2] === currPlayer && gameBoard[5] === currPlayer && gameBoard[8] === currPlayer) ||
+        (gameBoard[0] === currPlayer && gameBoard[4] === currPlayer && gameBoard[8] === currPlayer) ||
+        (gameBoard[2] === currPlayer && gameBoard[4] === currPlayer && gameBoard[6] === currPlayer)) {
+      renderGameOver('win')
+    } else if (turnCount === 9) {
+      renderGameOver('draw')
+    }
   }
 
-  const renderGameOver = function () {
+  const renderGameOver = function (outcome) {
+    console.log(outcome)
     // stop the user from being able to click on the cells
     // show some indicator of winer/loser
   }
