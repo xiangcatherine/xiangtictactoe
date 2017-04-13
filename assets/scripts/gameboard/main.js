@@ -33,14 +33,36 @@
 
 $(document).ready(function () {
   const gameBoard = ['', '', '', '', '', '', '', '', '']
+  let gameState = 'active'
   let turnCount = 0
   let currPlayer = 'X'
 
   $('.cell').on('click', function () {
+    if (checkValidClick(this.id) === false) {
+      return
+    }
+
     incrementTurnCount()
     updateArray(this.id)
     checkGameOutcome()
   })
+
+  /*
+   *  Check if user is allowed to click on a cell
+   */
+  const checkValidClick = function (cellId) {
+    // ignore if there's already input in that cell
+    if (gameBoard[parseInt(cellId)] !== '') {
+      return false
+    }
+
+    // ignore if game is over
+    if (gameState !== 'active') {
+      return false
+    }
+
+    return true
+  }
 
   /*
    *  Keeps track of whose turn it is
@@ -89,6 +111,7 @@ $(document).ready(function () {
   }
 
   const renderGameOver = function (outcome) {
+    gameState = 'inactive'
     console.log(outcome)
     // stop the user from being able to click on the cells
     // show some indicator of winer/loser
