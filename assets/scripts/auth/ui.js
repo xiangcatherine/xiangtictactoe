@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store.js')
+const game = require('../gameboard/main.js')
 
 const signUpSuccess = (data) => {
   console.log(data)
@@ -15,6 +16,7 @@ const signInSuccess = (data) => {
   console.log('You have successfully signed in!')
   // store the user object:
   store.user = data.user
+  $('.gameStateInactive').toggleClass('gameStateInactive gameStateActive')
 }
 
 const signInFailure = (error) => {
@@ -35,6 +37,7 @@ const changePasswordFailure = (error) => {
 const signOutSuccess = () => {
   console.log('You have signed out!')
   store.user = null
+  $('.gameStateActive').toggleClass('gameStateActive gameStateInactive')
 }
 
 const signOutFailure = (error) => {

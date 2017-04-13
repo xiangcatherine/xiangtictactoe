@@ -31,16 +31,28 @@
 
 'use strict'
 
+const ui = require('../auth/ui.js')
+
 $(document).ready(function () {
   let gameBoard = ['', '', '', '', '', '', '', '', '']
-  let gameState = 'active'
+  let gameState = 'inactive'
   let turnCount = 0
   let currPlayer = 'X'
+
+// if class is "gameStateInactive" --> gameState = 'inactive'
+// signInSuccess --> change class name to "gameStateActive"
+// if class is "gameStateActive" --> gameState = 'active'
 
   /*
    *  Overall flow of the game
    */
   $('.cell').on('click', function () {
+    if (checkGameState() === false) {
+      return
+    }
+    if (checkGameState() === true) {
+      gameState = 'active'
+    }
     if (checkValidClick(this.id) === false) {
       return
     }
@@ -54,6 +66,12 @@ $(document).ready(function () {
     restartGame()
   })
 
+  const checkGameState = function () {
+    if ($('#grid').hasClass('gameStateInactive')) {
+      return false
+    }
+    return true
+  }
   /*
    *  Check if user is allowed to click on a cell
    */
@@ -132,7 +150,7 @@ $(document).ready(function () {
    *  Displays message after game over
    */
   const renderGameOver = function (outcome) {
-    gameState = 'inactive'
+    $('.gameStateActive').toggleClass('gameStateActive gameStateInactive')
 
     // show some indicator of winner/loser
     if (outcome === 'win') {
@@ -146,7 +164,7 @@ $(document).ready(function () {
    *  Resets all game variables
    */
   const restartGame = function () {
-    gameState = 'active'
+    $('.gameStateInactive').toggleClass('gameStateInactive gameStateActive')
     turnCount = 0
     updateGameBoard(['', '', '', '', '', '', '', '', ''])
     updateOutcomeText('')
