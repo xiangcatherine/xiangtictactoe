@@ -15,8 +15,10 @@ require('./example')
 require('./gameboard/main.js')
 
 const authEvents = require('./auth/events.js')
+const gameEvents = require('./gameAPI/events.js')
 
 // On document ready
 $(() => {
   authEvents.addHandlers()
+  $('#games-search').on('submit', gameEvents.onGetAllGames)
 })
