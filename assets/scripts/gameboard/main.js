@@ -110,11 +110,18 @@ $(document).ready(function () {
     }
   }
 
+  /*
+   *  Displays message after game over
+   */
   const renderGameOver = function (outcome) {
     gameState = 'inactive'
-    console.log(outcome)
-    // stop the user from being able to click on the cells
-    // show some indicator of winer/loser
+
+    // show some indicator of winner/loser
+    if (outcome === 'win') {
+      $('.outcomeText').text(currPlayer + ' wins!')
+    } else {
+      $('.outcomeText').text("It's a draw!")
+    }
   }
 
   const restartGame = function () {
