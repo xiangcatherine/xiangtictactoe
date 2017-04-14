@@ -72,9 +72,33 @@ items inside: flex items
   font-size: 40px;
   border-radius: 6px;
   font-family: 'Sue Ellen Francisco', cursive;
-  padding: 0.5em;
+  padding-bottom: 0.75em;
+  outline: none;
 }
 
 .hidden {
   visibility: hidden
+}
+
+.outcomeText {
+  font-family: 'Sue Ellen Francisco', cursive;
+  font-size: 35px;
+  padding-top: 0.75em;
+}
+
+form {
+  font-family: 'Sue Ellen Francisco', cursive;
+  font-size: 20px;
+  display: inline-block;
+  margin: 15px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  position: relative;
+  height: 3em;
+}
+
+input[type=submit] {
+  background-color: #f7e3f3;
+  border: none;
+  padding: 7px;
 }

@@ -21,6 +21,25 @@
         <title>Tic Tac Toe</title>
       </header>
 
+      <form id="sign-up">
+        <fieldset>
+          <input type="text" name="credentials[email]" placeholder="email">
+          <input type="password" name="credentials[password]" placeholder="password">
+          <input type="password" name="credentials[password_confirmation]" placeholder="confirm password">
+          <input type="submit" name="submit" value="sign up!">
+        </fieldset>
+      </form>
+
+      <form id="sign-in">
+        <fieldset>
+          <input type="text" name="credentials[email]" placeholder="email">
+          <input type="password" name="credentials[password]" placeholder="password">
+          <input type="submit" name="submit" value="sign in!">
+        </fieldset>
+      </form>
+
+      <button id="startButton" class="hidden">new game</button>
+
       <div id="grid" class="gameStateInactive">
         <div class="cells">
           <span class="cell" id="0" data-item>
@@ -47,42 +66,19 @@
         </div>
       </div>
 
-      <button id="startButton" class="hidden">new game</button>
-
       <aside class="outcomeText"></aside>
-
-      <form id="sign-up">
-        <fieldset>
-          <legend>Sign up!</legend>
-          <input type="text" name="credentials[email]" placeholder="email">
-          <input type="password" name="credentials[password]" placeholder="password">
-          <input type="password" name="credentials[password_confirmation]" placeholder="confirm password">
-          <input type="submit" name="submit" value="Sign up!">
-        </fieldset>
-      </form>
-
-      <form id="sign-in">
-        <fieldset>
-          <legend>Sign in!</legend>
-          <input type="text" name="credentials[email]" placeholder="email">
-          <input type="password" name="credentials[password]" placeholder="password">
-          <input type="submit" name="submit" value="Sign in!">
-        </fieldset>
-      </form>
 
       <form id="change-password">
         <fieldset>
-          <legend>Change Password</legend>
           <input type="password" name="passwords[old]" placeholder="old password">
           <input type="password" name="passwords[new]" placeholder="new password">
-          <input type="submit" name="submit" value="Change your password!">
+          <input type="submit" name="submit" value="change password">
         </fieldset>
       </form>
 
       <form id="sign-out">
         <fieldset>
-          <legend>Sign out</legend>
-          <input type="submit" name="submit" value="Sign out">
+          <input type="submit" name="submit" value="sign out">
         </fieldset>
       </form>
 
