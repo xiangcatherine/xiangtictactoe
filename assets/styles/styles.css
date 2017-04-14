@@ -69,10 +69,10 @@ items inside: flex items
   display: block;
   border: none;
   background-color: #fff;
-  font-size: 40px;
+  font-size: 47px;
   border-radius: 6px;
   margin: auto;
-  font-family: 'Sue Ellen Francisco', cursive;
+  font-family: 'Indie Flower', cursive;
   padding-bottom: 0.75em;
   outline: none;
 }
@@ -82,9 +82,9 @@ items inside: flex items
 }
 
 .outcomeText {
-  font-family: 'Sue Ellen Francisco', cursive;
-  font-size: 35px;
-  padding-top: 0.75em;
+  font-family: 'Indie Flower', cursive;
+  font-size: 47px;
+  padding-top: 0.4em;
 }
 
 .gameHistoryContainer {
