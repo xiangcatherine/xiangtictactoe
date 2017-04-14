@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic Tac Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags unless you know what you are doing -->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+      <link rel="stylesheet" type="text/css" href="assets/styles/index.scss">
+      <link href="https://fonts.googleapis.com/css?family=Sue+Ellen+Francisco" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+
+
+      <!-- Do not add `script` tags unless you know what you are doing -->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body class="container-fluid">
+
+      <head>
+        <title>Tic Tac Toe</title>
+      </head>
+
+      <form id="sign-up">
+        <fieldset>
+          <input type="text" name="credentials[email]" placeholder="email">
+          <input type="password" name="credentials[password]" placeholder="password">
+          <input type="password" name="credentials[password_confirmation]" placeholder="confirm password">
+          <input type="submit" name="submit" value="sign up!">
+        </fieldset>
+      </form>
+
+      <div class="signUpErrorMessage"></div>
+
+      <form id="sign-in">
+        <fieldset>
+          <input type="text" name="credentials[email]" placeholder="email">
+          <input type="password" name="credentials[password]" placeholder="password">
+          <input type="submit" name="submit" value="sign in!">
+        </fieldset>
+      </form>
+
+      <div class="signInErrorMessage"></div>
+
+      </br>
+      </br>
+      <button id="startButton" class="hidden">new game</button>
+      </br>
+
+      <div id="grid" class="gameStateInactive">
+        <div class="cells">
+          <span class="cell" id="0" data-item>
+          </span>
+          <span class="cell" id="1" data-item>
+          </span>
+          <span class="cell" id="2" data-item>
+          </span>
+          <span class="cell" id="3" data-item>
+            <p class="TicTacToe">Tic</p>
+          </span>
+          <span class="cell" id="4" data-item>
+            <p class="TicTacToe">Tac</p>
+          </span>
+          <span class="cell" id="5" data-item>
+            <p class="TicTacToe">Toe</p>
+          </span>
+          <span class="cell" id="6" data-item>
+          </span>
+          <span class="cell" id="7" data-item>
+          </span>
+          <span class="cell" id="8" data-item>
+          </span>
+        </div>
+      </div>
+
+      <aside class="outcomeText"></aside>
+
+      <form class="games" id="gamesSearch">
+        <div class="form-group">
+        </div>
+        <input type="submit" id="getGames" class="hidden" value="view game history">
+      </form>
+        <div class="gameHistoryContainer" class="hidden"></div>
+
+      <form id="change-password" class="hidden">
+        <fieldset>
+          <input type="password" name="passwords[old]" placeholder="old password">
+          <input type="password" name="passwords[new]" placeholder="new password">
+          <input type="submit" name="submit" value="change password">
+        </fieldset>
+      </form>
+
+      <form id="sign-out" class="hidden">
+        <fieldset>
+          <input type="submit" name="submit" value="sign out">
+        </fieldset>
+      </form>
+
+    </body>
+</html>
