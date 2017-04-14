@@ -18,6 +18,8 @@ const signInSuccess = (data) => {
   store.user = data.user
   $('#startButton').removeClass('hidden')
   $('#sign-in').addClass('hidden')
+  $('#change-password').removeClass('hidden')
+  $('#sign-out').removeClass('hidden')
   $('#getGames').removeClass('hidden')
   if ($('#sign-up').not('hidden')) {
     $('#sign-up').addClass('hidden')
@@ -45,6 +47,8 @@ const signOutSuccess = () => {
   $('.gameStateActive').toggleClass('gameStateActive gameStateInactive')
   $('#sign-up').removeClass('hidden')
   $('#sign-in').removeClass('hidden')
+  $('#change-password').addClass('hidden')
+  $('#sign-out').addClass('hidden')
   $('#getGames').addClass('hidden')
   $('.gameHistoryContainer').css('visibility', 'hidden')
 }
