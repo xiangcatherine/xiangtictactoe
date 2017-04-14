@@ -5,6 +5,7 @@ const game = require('../gameboard/main.js')
 
 const signUpSuccess = (data) => {
   console.log(data)
+  $('#sign-up').fadeOut('slow')
 }
 
 const signUpFailure = (error) => {
@@ -17,6 +18,7 @@ const signInSuccess = (data) => {
   // store the user object:
   store.user = data.user
   $('#startButton').removeClass('hidden')
+  $('#sign-in').fadeOut('slow')
 }
 
 const signInFailure = (error) => {
@@ -38,6 +40,8 @@ const signOutSuccess = () => {
   console.log('You have signed out!')
   store.user = null
   $('.gameStateActive').toggleClass('gameStateActive gameStateInactive')
+  $('#sign-up').fadeIn()
+  $('#sign-in').fadeIn()
 }
 
 const signOutFailure = (error) => {
