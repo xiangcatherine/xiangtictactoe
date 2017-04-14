@@ -66,11 +66,12 @@ items inside: flex items
 }
 
 #startButton {
-  display: inline-block;
+  display: block;
   border: none;
   background-color: #fff;
   font-size: 40px;
   border-radius: 6px;
+  margin: auto;
   font-family: 'Sue Ellen Francisco', cursive;
   padding-bottom: 0.75em;
   outline: none;
@@ -91,7 +92,7 @@ form {
   font-size: 20px;
   display: inline-block;
   margin: 15px;
-  padding-top: 15px;
+  padding-top: 6px;
   padding-bottom: 10px;
   position: relative;
   height: 3em;
@@ -100,5 +101,9 @@ form {
 input[type=submit] {
   background-color: #f7e3f3;
   border: none;
+  padding: 7px;
+}
+
+input {
   padding: 7px;
 }
