@@ -5,7 +5,7 @@ List of technologies:
 HTML, CSS, SCSS, Javascript and jQuery, Rails
 
 
-Document your planning and tell a story about your development process and problem-solving strategy.
+Planning and development process:
 
 wireframe -> basic HTML and minimal styling (to get a basic
 visual) -> authentication -> game engine -> game API + UI -> styling + UI
@@ -28,8 +28,8 @@ brain). The pseudo code was incredibly helpful in helping me think about the
 flow of the game and what functions to write according to that.
 
 Apart from my first failed attempt at the game logic, it was very hard to keep
-code modular -- there was a lot of writing out functions - recognizing redudancy
-- erasing or moving, and so on. Scope was hard to keep track of as well (importing,
+code modular -- there was a lot of writing out functions -> recognizing redudancy
+-> erasing or moving, and so on. Scope was hard to keep track of as well (importing,
 exporting, writing callbacks etc.).
 
 All in all, this was a very challenging project, but I definitely learned a lot.
