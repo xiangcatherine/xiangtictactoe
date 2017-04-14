@@ -21,6 +21,8 @@ const onGetGamesSuccess = function (response) {
   $('.gameHistoryContainer').css('visibility', 'visible')
   if (response['games'].length === 0) {
     $('.gameHistoryContainer').text('Play a game first!')
+  } if (response['games'].length === 1) {
+    $('.gameHistoryContainer').text('You have played ' + response['games'].length + ' game!')
   } else {
     $('.gameHistoryContainer').text('You have played ' + response['games'].length + ' games!')
   }
