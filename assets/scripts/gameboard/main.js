@@ -31,154 +31,127 @@
 
 'use strict'
 
-const ui = require('../auth/ui.js')
+const gameEvents = require('../gameAPI/events.js')
 
-$(document).ready(function () {
-  let gameBoard = ['', '', '', '', '', '', '', '', '']
-  let gameState = 'inactive'
-  let turnCount = 0
-  let currPlayer = 'X'
+let gameBoard = ['', '', '', '', '', '', '', '', '']
+let turnCount = 0
+let currPlayer = 'X'
 
-// if class is "gameStateInactive" --> gameState = 'inactive'
-// signInSuccess --> change class name to "gameStateActive"
-// if class is "gameStateActive" --> gameState = 'active'
-
-  /*
-   *  Overall flow of the game
-   */
-  $('.cell').on('click', function () {
-    if (checkGameState() === false) {
-      return
-    }
-    if (checkGameState() === true) {
-      gameState = 'active'
-    }
-    if (checkValidClick(this.id) === false) {
-      return
-    }
-
-    incrementTurnCount()
-    insertIntoGameBoard(this.id)
-    checkGameOutcome()
-  })
-
-  $('#restartButton').on('click', function () {
-    restartGame()
-  })
-
-  const checkGameState = function () {
-    if ($('#grid').hasClass('gameStateInactive')) {
-      return false
-    }
-    return true
-  }
-  /*
-   *  Check if user is allowed to click on a cell
-   */
-  const checkValidClick = function (cellId) {
-    // ignore if there's already input in that cell
-    if (gameBoard[parseInt(cellId)] !== '') {
-      return false
-    }
-
-    // ignore if game is over
-    if (gameState !== 'active') {
-      return false
-    }
-
-    return true
-  }
-
-  /*
-   *  Keeps track of whose turn it is
-   */
-  const incrementTurnCount = function () {
-    turnCount++
-
-    if (turnCount % 2 === 0) {
-      currPlayer = 'X'
-    } else {
-      currPlayer = 'O'
-    }
-  }
-
-  /*
-   *  Places X or O into html and updates array[index] with new value
-   */
-  const insertIntoGameBoard = function (cellId) {
-    // push what's in the clicked cell to the array
-    gameBoard[parseInt(cellId)] = currPlayer
-
-    updateGameBoard(gameBoard)
-  }
-
-  /*
-   *  Take the array and update gameBoard with the values
-   */
-  const updateGameBoard = function (valueArray) {
-    gameBoard = valueArray
-
-    // for each element in the gameBoard, update the html board
-    for (let i = 0; i < gameBoard.length; i++) {
-      $('#' + i).text(gameBoard[i])
-    }
-  }
-
-  /*
-   *  Checks for win or draw
-   */
-  const checkGameOutcome = function () {
-    if (turnCount < 5) {
-      return
-    }
-
-    if ((gameBoard[0] === currPlayer && gameBoard[1] === currPlayer && gameBoard[2] === currPlayer) ||
-        (gameBoard[3] === currPlayer && gameBoard[4] === currPlayer && gameBoard[5] === currPlayer) ||
-        (gameBoard[6] === currPlayer && gameBoard[7] === currPlayer && gameBoard[8] === currPlayer) ||
-        (gameBoard[0] === currPlayer && gameBoard[3] === currPlayer && gameBoard[6] === currPlayer) ||
-        (gameBoard[1] === currPlayer && gameBoard[4] === currPlayer && gameBoard[7] === currPlayer) ||
-        (gameBoard[2] === currPlayer && gameBoard[5] === currPlayer && gameBoard[8] === currPlayer) ||
-        (gameBoard[0] === currPlayer && gameBoard[4] === currPlayer && gameBoard[8] === currPlayer) ||
-        (gameBoard[2] === currPlayer && gameBoard[4] === currPlayer && gameBoard[6] === currPlayer)) {
-      renderGameOver('win')
-    } else if (turnCount === 9) {
-      renderGameOver('draw')
-    }
-  }
-
-  /*
-   *  Displays message after game over
-   */
-  const renderGameOver = function (outcome) {
-    $('.gameStateActive').toggleClass('gameStateActive gameStateInactive')
-
-    // show some indicator of winner/loser
-    if (outcome === 'win') {
-      updateOutcomeText(currPlayer + ' wins!')
-    } else {
-      updateOutcomeText("It's a draw!")
-    }
-  }
-
-  /*
-   *  Resets all game variables
-   */
-  const restartGame = function () {
-    $('.gameStateInactive').toggleClass('gameStateInactive gameStateActive')
-    turnCount = 0
-    updateGameBoard(['', '', '', '', '', '', '', '', ''])
-    updateOutcomeText('')
-  }
-
-  const updateOutcomeText = function (message) {
-    $('.outcomeText').text(message)
-  }
-})
-
-module.exports = {
+/*
+ *  Resets all game variables
+ */
+const startGame = function () {
+  $('.gameStateInactive').toggleClass('gameStateInactive gameStateActive')
+  turnCount = 0
+  clearGameBoard()
+  updateOutcomeText('')
 }
 
-// $('#playButton').on('click', function () {
-//   playButton.fadeOut('slow')
-//   title.fadeOut('slow')
-// })
+const clearGameBoard = function () {
+  gameBoard = ['', '', '', '', '', '', '', '', '']
+
+  for (let i = 0; i < gameBoard.length; i++) {
+    $('#' + i).text('')
+  }
+}
+
+/*
+ *  Check if user is allowed to click on a cell
+ */
+const checkValidClick = function (cellId) {
+  // ignore if grid is inactive
+  if ($('#grid').hasClass('gameStateInactive')) {
+    return false
+  }
+
+  // ignore if there's already input in that cell
+  if (gameBoard[parseInt(cellId)] !== '') {
+    return false
+  }
+
+  return true
+}
+
+/*
+ *  Keeps track of whose turn it is
+ */
+const incrementTurnCount = function () {
+  turnCount++
+  if (turnCount % 2 === 0) {
+    currPlayer = 'X'
+  } else {
+    currPlayer = 'O'
+  }
+}
+
+/*
+ *  Places X or O into html and updates array[index] with new value
+ */
+const insertIntoGameBoard = function (cellId) {
+  // push what's in the clicked cell to the array
+  gameBoard[parseInt(cellId)] = currPlayer
+
+  // update element in html board
+  $('#' + cellId).text(currPlayer)
+}
+
+/*
+ *  Checks for win or draw
+ */
+const checkGameOutcome = function () {
+  if (turnCount < 5) {
+    return
+  }
+
+  if ((gameBoard[0] === currPlayer && gameBoard[1] === currPlayer && gameBoard[2] === currPlayer) ||
+      (gameBoard[3] === currPlayer && gameBoard[4] === currPlayer && gameBoard[5] === currPlayer) ||
+      (gameBoard[6] === currPlayer && gameBoard[7] === currPlayer && gameBoard[8] === currPlayer) ||
+      (gameBoard[0] === currPlayer && gameBoard[3] === currPlayer && gameBoard[6] === currPlayer) ||
+      (gameBoard[1] === currPlayer && gameBoard[4] === currPlayer && gameBoard[7] === currPlayer) ||
+      (gameBoard[2] === currPlayer && gameBoard[5] === currPlayer && gameBoard[8] === currPlayer) ||
+      (gameBoard[0] === currPlayer && gameBoard[4] === currPlayer && gameBoard[8] === currPlayer) ||
+      (gameBoard[2] === currPlayer && gameBoard[4] === currPlayer && gameBoard[6] === currPlayer)) {
+    renderGameOver('win')
+  } else if (turnCount === 9) {
+    renderGameOver('draw')
+  }
+}
+
+/*
+ *  Displays message after game over
+ */
+const renderGameOver = function (outcome) {
+  $('.gameStateActive').toggleClass('gameStateActive gameStateInactive')
+
+  // show some indicator of winner/loser
+  if (outcome === 'win') {
+    updateOutcomeText(currPlayer + ' wins!')
+  } else {
+    updateOutcomeText("It's a draw!")
+  }
+}
+
+const updateOutcomeText = function (message) {
+  $('.outcomeText').text(message)
+}
+
+/*
+ *  API call to update the game state
+ */
+const updateGameState = function (cellId) {
+  let over = false
+  if ($('#grid').hasClass('gameStateInactive')) {
+    over = true
+  }
+
+  gameEvents.onUpdateGame(parseInt(cellId), currPlayer, over)
+}
+
+module.exports = {
+  startGame,
+  checkValidClick,
+  incrementTurnCount,
+  insertIntoGameBoard,
+  checkGameOutcome,
+  updateGameState
+}

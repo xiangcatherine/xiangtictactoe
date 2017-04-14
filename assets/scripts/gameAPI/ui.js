@@ -1,21 +1,29 @@
 'use strict'
 
-const onSuccess = function (data) {
-  console.log('data is ', data)
-  if (!data) {
-    console.warn('Either you deleted something, or something went wrong.')
-  } else if (data.game) {
-    console.log(data.game)
-  } else {
-    console.table(data.games)
-  }
+const onCreateGameSuccess = function () {
+  console.log('game created successfully!')
 }
 
-const onError = function (response) {
-  console.error(response)
+const onCreateGameFailure = function () {
+  console.log('game could not be created')
+}
+
+const onUpdateGameSuccess = function () {
+  console.log('game updated successfully!')
+}
+
+const onUpdateGameFailure = function () {
+  console.log('game could not be updated')
 }
 
 module.exports = {
-  onSuccess,
-  onError
+  onCreateGameSuccess,
+  onCreateGameFailure,
+  onUpdateGameSuccess,
+  onUpdateGameFailure
 }
+
+// $('#playButton').on('click', function () {
+//   playButton.fadeOut('slow')
+//   title.fadeOut('slow')
+// })

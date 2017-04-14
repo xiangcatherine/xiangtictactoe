@@ -2,26 +2,23 @@
 
 const gamesApi = require('./api.js')
 const gamesUi = require('./ui.js')
-const getFormFields = require(`../../../lib/get-form-fields`)
+const store = require('../store.js')
 
-const onCreateGame = function () {
-  event.preventDefault()
+const onCreateGame = function (event) {
   gamesApi.createGame()
-    .then(gamesUi.onSuccess)
-    .catch(gamesUi.onError)
+    .then(
+      function (result) {
+        store.gameId = result['game']['id']
+        gamesUi.onCreateGameSuccess()
+      }
+    )
+    .catch(gamesUi.onCreateGameFailure)
 }
 
-const onUpdateGame = function (event) {
-  event.preventDefault()
-  const data = getFormFields(event.target)
-
-  if (data.game.id.length !== 0) {
-    gamesApi.update(data)
-      .then(gamesUi.onSuccess)
-      .catch(gamesUi.onError)
-  } else {
-    console.log('Please provide a book id!')
-  }
+const onUpdateGame = function (index, value, over) {
+  gamesApi.updateGame(index, value, over)
+    .then(gamesUi.onUpdateGameSuccess)
+    .catch(gamesUi.onUpdateGameFailure)
 }
 
 module.exports = {

@@ -16,7 +16,7 @@ const signInSuccess = (data) => {
   console.log('You have successfully signed in!')
   // store the user object:
   store.user = data.user
-  $('.gameStateInactive').toggleClass('gameStateInactive gameStateActive')
+  $('#startButton').removeClass('hidden')
 }
 
 const signInFailure = (error) => {

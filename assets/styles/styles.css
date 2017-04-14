@@ -39,17 +39,20 @@ items inside: flex items
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: flex-end;
 }
 
 .cell {
   width: 150px;
   height: 150px;
+  padding-top: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
   background: white;
   line-height: 1;
   /*line-height is % of font size*/
   font-size: 100px;
+  font-family: 'Indie Flower', cursive;
 }
 
 .cell p {
@@ -62,11 +65,16 @@ items inside: flex items
   margin-right: 0;
 }
 
-#playButton {
+#startButton {
   display: inline-block;
   border: none;
   background-color: #fff;
   font-size: 40px;
   border-radius: 6px;
   font-family: 'Sue Ellen Francisco', cursive;
+  padding: 0.5em;
+}
+
+.hidden {
+  visibility: hidden
 }

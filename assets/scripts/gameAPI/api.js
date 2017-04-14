@@ -5,7 +5,7 @@ const store = require('../store.js')
 
 const createGame = () => {
   return $.ajax({
-    url: config.apiOrigin + 'games',
+    url: config.apiOrigin + 'games/',
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -14,10 +14,10 @@ const createGame = () => {
   })
 }
 
-const updateGame = (index, value, isOver) => {
+const updateGame = function (index, value, over) {
   return $.ajax({
-    url: config.apiOrigin + 'games/ ' + store.game.id,
     method: 'PATCH',
+    url: config.apiOrigin + 'games/' + store.gameId,
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
@@ -27,7 +27,7 @@ const updateGame = (index, value, isOver) => {
           'index': index,
           'value': value
         },
-        'over': isOver
+        'over': over
       }
     }
   })
