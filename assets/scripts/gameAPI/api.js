@@ -3,6 +3,16 @@
 const config = require('../config.js')
 const store = require('../store.js')
 
+const getGames = function () {
+  return $.ajax({
+    url: config.apiOrigin + 'games/',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 const createGame = () => {
   return $.ajax({
     url: config.apiOrigin + 'games/',
@@ -35,5 +45,6 @@ const updateGame = function (index, value, over) {
 
 module.exports = {
   createGame,
-  updateGame
+  updateGame,
+  getGames
 }

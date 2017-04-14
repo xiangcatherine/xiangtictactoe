@@ -25,4 +25,8 @@ $(() => {
     gameLogic.checkGameOutcome()
     gameLogic.updateGameState(this.id)
   })
+
+  $('#gamesSearch').on('click', function () {
+    gameEvents.onGetGames()
+  })
 })

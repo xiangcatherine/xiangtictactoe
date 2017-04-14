@@ -4,6 +4,17 @@ const gamesApi = require('./api.js')
 const gamesUi = require('./ui.js')
 const store = require('../store.js')
 
+const onGetGames = function () {
+  event.preventDefault()
+  gamesApi.getGames()
+    .then(
+      function (result) {
+        gamesUi.onGetGamesSuccess(result)
+      }
+    )
+    .catch(gamesUi.onGetGamesError)
+}
+
 const onCreateGame = function (event) {
   gamesApi.createGame()
     .then(
@@ -23,5 +34,6 @@ const onUpdateGame = function (index, value, over) {
 
 module.exports = {
   onCreateGame,
-  onUpdateGame
+  onUpdateGame,
+  onGetGames
 }
