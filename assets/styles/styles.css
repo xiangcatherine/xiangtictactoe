@@ -68,13 +68,25 @@ items inside: flex items
 #startButton {
   display: block;
   border: none;
-  background-color: #fff;
-  font-size: 47px;
+  background-color: #f7e3f3;
+  font-size: 30px;
   border-radius: 6px;
   margin: auto;
   font-family: 'Indie Flower', cursive;
-  padding-bottom: 0.75em;
+  /*padding-top: 0.75em;*/
   outline: none;
+}
+
+.signInErrorMessage {
+  display: inline-block;
+  font-family: 'Sue Ellen Francisco', cursive;
+  font-size: 20px;
+}
+
+.signUpErrorMessage {
+  display: inline-block;
+  font-family: 'Sue Ellen Francisco', cursive;
+  font-size: 20px;
 }
 
 .hidden {
@@ -84,7 +96,7 @@ items inside: flex items
 .outcomeText {
   font-family: 'Indie Flower', cursive;
   font-size: 47px;
-  padding-top: 0.4em;
+  padding-top: 0.2em;
 }
 
 .gameHistoryContainer {
@@ -98,7 +110,7 @@ form {
   display: inline-block;
   margin: 15px;
   padding-top: 6px;
-  padding-bottom: 10px;
+  padding-bottom: 6px;
   position: relative;
   height: 3em;
 }

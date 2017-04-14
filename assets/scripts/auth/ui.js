@@ -5,10 +5,12 @@ const store = require('../store.js')
 const signUpSuccess = (data) => {
   console.log(data)
   $('#sign-up').addClass('hidden')
+  $('.signUpErrorMessage').addClass('hidden')
 }
 
 const signUpFailure = (error) => {
   console.error(error)
+  $('.signUpErrorMessage').text('Try again!')
 }
 
 const signInSuccess = (data) => {
@@ -19,6 +21,7 @@ const signInSuccess = (data) => {
   $('#startButton').removeClass('hidden')
   $('#sign-in').addClass('hidden')
   $('#change-password').removeClass('hidden')
+  $('.signInErrorMessage').addClass('hidden')
   $('#sign-out').removeClass('hidden')
   $('#getGames').removeClass('hidden')
   if ($('#sign-up').not('hidden')) {
@@ -29,6 +32,7 @@ const signInSuccess = (data) => {
 const signInFailure = (error) => {
   console.log(error)
   console.log('Either the username or password is wrong.')
+  $('.signInErrorMessage').text('Sorry, either the username or password was incorrect.')
 }
 
 const changePasswordSuccess = (data) => {
